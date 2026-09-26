@@ -7,7 +7,7 @@ import { context } from "./context/AuthContext";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [nameData, setNameData] = useState("");
+  const [nameData, setNameData] = useState([]);
   const [query, setQuery] = useState("");
   const [department, setDepartment] = useState("");
   const [assignment, setAssignment] = useState('');
@@ -18,10 +18,10 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const names = await axios.get(
+      const response = await axios.get(
         "https://api.slingacademy.com/v1/sample-data/files/employees.json",
       );
-      setNameData(names.data.employees);
+      setNameData(response.data);
       setLoading(false);
     } catch (error) {
       console.error("Error loading name data:", error);
@@ -50,7 +50,7 @@ function App() {
           }}
         >
           <Header />
-          <Body />
+          
         </context.Provider>
       </div>
     </>

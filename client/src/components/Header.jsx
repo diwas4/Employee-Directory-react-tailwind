@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { context } from "../context/AuthContext";
+import Body from "./Body";
 
 const Header = () => {
   const {
@@ -55,9 +56,9 @@ const Header = () => {
             }}
             value={assignment}
           >
-            <option>Department</option>
-            <option>Product</option>
-            <option>Human Resources</option>
+            <option value='department'>Department</option>
+            <option value='product'>Product</option>
+            <option value='resource'>Human Resources</option>
           </select>
         </div>
         <div className="pl-1">
@@ -71,6 +72,13 @@ const Header = () => {
           />
         </div>
       </div>
+      {loading ? (
+        <div>
+          <h1>Loading...</h1>
+        </div>
+      ) : (
+        <Body nameData={nameData} />
+      )}
     </>
   );
 };
